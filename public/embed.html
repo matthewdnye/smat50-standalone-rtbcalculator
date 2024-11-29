@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Retirement Tax Calculator - Embed Demo</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .demo-container {
+      margin: 40px auto;
+      max-width: 800px;
+    }
+    pre {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .features {
+      margin: 20px 0;
+      padding-left: 20px;
+    }
+    .code-tabs {
+      margin: 20px 0;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .tab-button {
+      padding: 8px 16px;
+      border: none;
+      background: #e5e7eb;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .tab-button.active {
+      background: #4f46e5;
+      color: white;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Retirement Tax Calculator - Embedding Instructions</h1>
+  
+  <div class="demo-container">
+    <h2>Live Demo</h2>
+    <!-- Calculator will be embedded here -->
+    <script src="/embed.js" async></script>
+  </div>
+
+  <h2>Installation</h2>
+  <p>Choose the appropriate embed code based on your needs:</p>
+  
+  <div class="code-tabs">
+    <div class="tab-buttons">
+      <button class="tab-button active" onclick="showTab('responsive')">Responsive Embed</button>
+      <button class="tab-button" onclick="showTab('desktop')">Desktop Only</button>
+      <button class="tab-button" onclick="showTab('mobile')">Mobile Only</button>
+    </div>
+    
+    <div id="responsive" class="tab-content active">
+      <h3>Responsive Embed (Recommended)</h3>
+      <p>This version automatically adapts to both desktop and mobile:</p>
+      <pre><code>&lt;script src="https://your-domain.com/embed.js" async&gt;&lt;/script&gt;</code></pre>
+    </div>
+    
+    <div id="desktop" class="tab-content">
+      <h3>Desktop-Optimized Version</h3>
+      <p>Use this if you want to show the calculator only on desktop devices:</p>
+      <pre><code>&lt;script&gt;
+if (window.innerWidth >= 768) {
+  const script = document.createElement('script');
+  script.src = 'https://your-domain.com/embed.js';
+  script.async = true;
+  document.body.appendChild(script);
+}
+&lt;/script&gt;</code></pre>
+    </div>
+    
+    <div id="mobile" class="tab-content">
+      <h3>Mobile-Optimized Version</h3>
+      <p>Use this if you want to show the calculator only on mobile devices:</p>
+      <pre><code>&lt;script&gt;
+if (window.innerWidth < 768) {
+  const script = document.createElement('script');
+  script.src = 'https://your-domain.com/embed.js';
+  script.async = true;
+  document.body.appendChild(script);
+}
+&lt;/script&gt;</code></pre>
+    </div>
+  </div>
+
+  <script>
+    function showTab(tabId) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab-button').forEach(button => {
+        button.classList.remove('active');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabId).classList.add('active');
+      document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+  </script>
+
+  <h2>Features</h2>
+  <ul class="features">
+    <li>Responsive design - adapts to container width</li>
+    <li>Automatic height adjustment based on content</li>
+    <li>Isolated styles prevent conflicts with parent page</li>
+    <li>Lightweight and fast loading</li>
+    <li>Cross-origin compatible</li>
+    <li>Mobile-optimized scrolling and layout</li>
+  </ul>
+
+  <h2>Technical Specifications</h2>
+  <ul class="features">
+    <li>Maximum width: 800px (automatically centers in wider containers)</li>
+    <li>Supports modern browsers (Chrome 60+, Firefox 55+, Safari 12.1+, Edge 79+)</li>
+    <li>No external dependencies required</li>
+    <li>Automatic mobile/desktop detection and optimization</li>
+  </ul>
+
+  <h2>Security</h2>
+  <ul class="features">
+    <li>Sandboxed iframe environment</li>
+    <li>Content Security Policy (CSP) compliant</li>
+    <li>No access to parent page DOM</li>
+    <li>Secure cross-origin messaging</li>
+  </ul>
+</body>
+</html>

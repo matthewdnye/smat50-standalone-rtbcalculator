@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Retirement Tax Calculator</title>
+    <style>
+      /* Reset iframe default styles */
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+      }
+      #root {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Send height updates to parent
+      const sendHeight = () => {
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({
+          type: 'rtb-calculator-height',
+          height
+        }, '*');
+      };
+
+      // Update height on content changes
+      const observer = new MutationObserver(sendHeight);
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+
+      // Initial height and window resize
+      window.addEventListener('load', sendHeight);
+      window.addEventListener('resize', sendHeight);
+    </script>
+  </body>
+</html>
